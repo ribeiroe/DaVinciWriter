@@ -1,0 +1,21 @@
+services:
+  davinci:
+    build: .
+    image: davinci-writer:latest
+    container_name: davinci-writer
+    ports:
+      - "8501:8501"
+    volumes:
+      # User data — persisted on your machine, never inside the container
+      - ./sources/theses:/app/sources/theses
+      - ./sources/artefacts:/app/sources/artefacts
+      - ./sources/papers:/app/sources/papers
+      - ./sources/my-papers:/app/sources/my-papers
+      - ./sources/venues:/app/sources/venues
+      - ./sources/reviewer-feedback:/app/sources/reviewer-feedback
+      - ./sources/my-response-letters:/app/sources/my-response-letters
+      - ./sources/submitted-papers:/app/sources/submitted-papers
+      - ./output:/app/output
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:?Set ANTHROPIC_API_KEY in .env or the environment}
+    restart: unless-stopped

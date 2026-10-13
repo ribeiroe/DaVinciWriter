@@ -1,0 +1,35 @@
+# Secrets — never send to the Docker daemon
+.env
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# User data (mounted as volumes at runtime, except venues/ which is baked in)
+output/
+sources/theses/
+sources/artefacts/
+sources/papers/
+sources/my-papers/
+sources/reviewer-feedback/
+sources/my-response-letters/
+sources/submitted-papers/
+
+# Web UI session history (user-specific)
+web/.sessions/
+
+# VCS / CI
+.git/
+.github/workflows/
+.devcontainer/
+
+# Release artifacts and OS noise
+*.zip
+*.tar.gz
+.DS_Store
+Thumbs.db
+
+# Python caches
+__pycache__/
+*.py[cod]

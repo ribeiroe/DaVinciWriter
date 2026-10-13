@@ -1,0 +1,55 @@
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# ── Virtual environment ───────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+
+# ── Environment / secrets ─────────────────────────────────────────────────────
+.env
+*.log
+# .env.example is intentionally NOT ignored — it is a safe template
+
+# ── User source files (personal research data — never commit) ─────────────────
+sources/theses/*
+sources/artefacts/*
+sources/papers/*
+sources/my-papers/*
+sources/reviewer-feedback/*
+sources/my-response-letters/*
+sources/submitted-papers/*
+# Keep the README placeholders
+!sources/theses/README.md
+!sources/artefacts/README.md
+!sources/papers/README.md
+!sources/my-papers/README.md
+!sources/reviewer-feedback/README.md
+!sources/my-response-letters/README.md
+!sources/submitted-papers/README.md
+
+# ── Generated output (large, user-specific) ──────────────────────────────────
+output/*
+# Optionally track the knowledge base across machines by uncommenting:
+# !output/knowledge/
+
+# ── Web UI sessions (user-specific, ephemeral) ───────────────────────────────
+web/.sessions/
+
+# ── Release artifacts ─────────────────────────────────────────────────────────
+*.zip
+*.tar.gz
+
+# ── OS noise ──────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Editor noise ─────────────────────────────────────────────────────────────
+.vscode/settings.json
+*.swp
+*.swo

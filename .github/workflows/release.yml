@@ -1,0 +1,55 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Extract version from tag
+        id: version
+        run: echo "VERSION=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+
+      - name: Build release zip
+        # Single source of truth: the same script used for local releases.
+        # It stages into a versioned folder, scrubs all personal source
+        # folders, embeds the Start/Stop launchers, and packs the zip.
+        run: |
+          VERSION="${{ steps.version.outputs.VERSION }}"
+          bash scripts/make-release.sh "$VERSION"
+          echo "ZIP=DaVinci-v${VERSION}.zip" >> "$GITHUB_ENV"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: DaVinci Writer v${{ steps.version.outputs.VERSION }}
+          generate_release_notes: true
+          body: |
+            ## DaVinci Writer v${{ steps.version.outputs.VERSION }}
+
+            Download `DaVinci-v${{ steps.version.outputs.VERSION }}.zip`, unzip it, and launch with `start.bat` (Windows) or `Start DaVinci.command` (macOS). You can also run with Docker via `docker compose up`.
+
+            ### What's included
+            - Full source code and Web UI (`web/`)
+            - All agent and skill prompts (`.github/`)
+            - Documentation (`docs/`, `README.md`, `AGENTS.md`)
+            - Venue templates (`sources/venues/`)
+            - Setup scripts (`scripts/windows/`, `scripts/macos/`)
+            - Dockerfile and docker-compose.yml
+
+            ### Requirements
+            - Python 3.10+ **or** Docker
+            - Anthropic API key ([get one](https://console.anthropic.com/)) or a local model via Ollama / LM Studio
+
+            ### Changes since the last release
+          files: ${{ env.ZIP }}
+          fail_on_unmatched_files: true

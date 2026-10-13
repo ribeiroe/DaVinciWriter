@@ -1,0 +1,5 @@
+streamlit>=1.49,<2
+anthropic>=0.40,<1
+python-dotenv>=1.0,<2
+pdfplumber>=0.11,<1
+starlette>=0.46,<1

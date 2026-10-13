@@ -1,0 +1,31 @@
+{
+  "name": "DaVinci — Academic Paper Writer",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.12"
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "GitHub.copilot",
+        "GitHub.copilot-chat"
+      ],
+      "settings": {
+        "chat.agent.enabled": true,
+        "editor.wordWrap": "on",
+        "files.trimTrailingWhitespace": true
+      }
+    }
+  },
+  "forwardPorts": [8501],
+  "portsAttributes": {
+    "8501": { "label": "DaVinci Web UI" }
+  },
+  "postCreateCommand": "pip install -r web/requirements.txt && echo '✅ DaVinci is ready! Open Copilot Chat and type /start, or run: streamlit run web/app.py'",
+  "remoteUser": "codespace"
+}
