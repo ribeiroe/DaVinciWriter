@@ -27,7 +27,7 @@ DaVinci Writer automates the mechanical parts of paper writing so you can focus 
 - **Local model support** — run cost-free against Ollama (via a LiteLLM proxy), LM Studio, or any Anthropic-compatible endpoint, configured entirely from Settings
 - **Themes** — System, Dark, or Light appearance, switchable from Settings or the top-bar toggle
 - **Responsible AI page** — EU AI Act notice and cloud-vs-local data-flow details, one click from the sidebar
-- **Community-supported sustainability** — optional Ko-fi support is available from the sidebar and About page to help cover development, maintenance, and hosting costs (no paywalls or feature gating)
+- **Community-supported sustainability** — optional Ko-fi tips are available from the sidebar, the About page, and after a pipeline completes to help cover development, maintenance, and hosting costs (no paywalls or feature gating)
 
 ## Getting Started
 

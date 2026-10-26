@@ -3352,7 +3352,7 @@ elif st.session_state.page in ("manual", "about", "responsible-ai"):
                 <div style="padding: 1rem 1.1rem; border-radius: 12px; border: 1px solid var(--card-border); background: var(--card-bg); margin: 0.4rem 0 0.8rem 0;">
                     <p style="margin: 0 0 0.4rem 0; font-size: 1.02rem; font-weight: 600;">Keep DaVinci Free</p>
                     <p style="margin: 0; color: var(--text-secondary); line-height: 1.55; font-size: 0.9rem;">
-                        DaVinci Writer is free and will remain free. If it supports your work, optional contributions help
+                        DaVinci Writer is free and will remain free. If it supports your work, optional tips help
                         RibeiroLabs cover development, maintenance, and hosting costs. No paywalls. No feature gating.
                     </p>
                 </div>

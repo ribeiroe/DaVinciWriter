@@ -188,7 +188,7 @@ Open http://localhost:8501. Stop with `docker compose down`.
 - **📄 Output Manager** — Browse, preview, and download all generated manuscripts and reports.
 - **⚙️ Settings** — Choose your provider (Anthropic cloud or a local endpoint), configure and verify your API key with Save & Test, pick a Claude model (Sonnet 5 / Opus 5 / Haiku 4.5) from comparison cards, enable Economy routing, track session costs, and switch between System, Dark, and Light themes.
 - **🛡️ Responsible AI** — A sidebar page with the EU AI Act notice and data-flow details (cloud vs. local).
-- **🤝 Optional Support** — A subtle Support entry in the Help section and an About-page support card link to Ko-fi for voluntary community support (no paywalls, no feature gating).
+- **🤝 Optional Support** — A subtle Support entry in the Help section, an About-page support card, and a one-time hint after a pipeline completes link to Ko-fi for voluntary tips (no paywalls, no feature gating).
 - **💾 Session Persistence** — Sessions auto-save after each message; resume any of your five most recent sessions from the sidebar after closing the browser.
 
 #### Screenshots
@@ -562,10 +562,10 @@ DaVinci Writer does not train or provide any model. The Web UI uses Anthropic Cl
 
 ## Community Support (Optional)
 
-DaVinci Writer is free and will remain free under the GNU General Public License v3.0. If it helps your work, you can optionally support RibeiroLabs to help cover development, maintenance, and hosting costs. Donating unlocks no features, no early access, no priority, and comes with no support commitment — it is a voluntary donation only.
+DaVinci Writer is free and will remain free under the GNU General Public License v3.0. If it helps your work, you can optionally support RibeiroLabs to help cover development, maintenance, and hosting costs. Tipping unlocks no features, no early access, no priority, and comes with no support commitment — tips are voluntary only.
 
 - Ko-fi: [https://ko-fi.com/ribeirolabs](https://ko-fi.com/ribeirolabs)
-- In-app locations: the sidebar Help section and the About page
+- In-app locations: the sidebar Help section, the About page, and a one-time hint shown when a pipeline completes
 
 ---
 

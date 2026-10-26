@@ -142,7 +142,7 @@ A: No. The system writes in Markdown. You can convert to LaTeX using Pandoc: `pa
 A: Yes. Each paper gets its own folder under `output/`. Start a new session from the sidebar for each new paper.
 
 **Q: How can I support DaVinci Writer?**
-A: In the app sidebar, open **Help** and click **Support (Optional)**. Contributions are voluntary and help keep DaVinci free.
+A: In the app sidebar, open **Help** and click **Support (Optional)**. The link also appears on the **About DaVinci** page and once after a pipeline completes. Tips are voluntary and help keep DaVinci free.
 
 ---
 

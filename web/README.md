@@ -55,8 +55,9 @@ Files uploaded through the UI are saved to the standard `sources/` folders,
 so they're also available if you switch to the VS Code workflow later.
 
 The sidebar **Help** section also includes **Support (Optional)**, which opens
-the Ko-fi page for voluntary community support. The app remains free with no
-paywalls or feature gating.
+the Ko-fi page for voluntary tips. The same link also appears on the About page
+and once after a pipeline completes. The app remains free with no paywalls or
+feature gating.
 
 ## For VS Code Users
 

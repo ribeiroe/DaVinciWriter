@@ -112,7 +112,7 @@
 ## Awards
 
 - Best student paper per track (selected by Track Programme Committee)
-- Best overall student paper at INForum (MacBook Air M5, sponsored by UNINOVA)
+- Best overall student paper at INForum
 - Best student poster award
 
 ---

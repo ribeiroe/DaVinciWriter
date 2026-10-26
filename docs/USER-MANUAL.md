@@ -335,7 +335,7 @@ Shows your 5 most recent saved sessions. Sessions auto-save after every message 
 | ℹ️ **About DaVinci** | Project information and version |
 | 🛡️ **Responsible AI** | EU AI Act notice, data-flow details, and AI-use disclosure guidance |
 | ⚙️ **Settings** | Provider (Anthropic cloud or local endpoint), API key, model selection, theme, and cost estimates |
-| 🤝 **Support (Optional)** | Opens the Ko-fi support page (voluntary community support) |
+| 🤝 **Support (Optional)** | Opens the Ko-fi support page (voluntary tips) |
 
 ![Sidebar Help section (Light Theme)](images/sidebar-help-light.png)
 ![Sidebar Help section (Dark Theme)](images/sidebar-help-dark.png)
@@ -677,7 +677,7 @@ A: Open **⚙️ Settings → Connection**, paste your key, and click **Save & T
 A: Yes, with a local model. Choose **Local endpoint** in **⚙️ Settings → Connection** and follow the built-in Ollama + LiteLLM recipe. Generation then runs on your machine at no cost. Expect lower quality than cloud models; Anthropic cloud requires an internet connection.
 
 **Q: How can I support the project?**
-A: In the sidebar **Help** section, click **Support (Optional)**. You can also use the support card on the **About DaVinci** page. Contributions are voluntary and help cover development, maintenance, and hosting costs.
+A: In the sidebar **Help** section, click **Support (Optional)**. You can also use the support card on the **About DaVinci** page, or the one-time hint shown when a pipeline completes. Tips are voluntary and help cover development, maintenance, and hosting costs.
 
 ### Papers & Output
 
