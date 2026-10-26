@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.0.2 — 2026-10-26
+
+### Changes
+
+- Reworded the optional Ko-fi support text to "tips" (voluntary, unlocks no features) and listed all in-app locations of the Support link, including the post-pipeline hint.
+- Removed prize and sponsor detail from the INForum venue summary.
+
 ## v1.0.1 — 2026-10-13
 
 First public release of DaVinci Writer.

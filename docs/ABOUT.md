@@ -2,7 +2,7 @@
 
 **DaVinci Writer** is an AI-powered multi-agent system that helps researchers turn theses, research data, and unpublished materials into publication-ready scientific papers.
 
-**Version 1.0.1** · October 2026
+**Version 1.0.2** · October 2026
 
 ## Why DaVinci?
 
@@ -105,7 +105,7 @@ If DaVinci Writer helped produce a paper, thesis, or report, please cite it as:
   author  = {Ferreira Ribeiro, J. Eduardo and Campos, António and Pessoa Soares, Nuno},
   title   = {DaVinci Writer: An AI-Powered Multi-Agent System for Academic Paper Writing},
   year    = {2026},
-  version = {1.0.1},
+  version = {1.0.2},
   url     = {https://github.com/ribeiroe/DaVinci_Writer}
 }
 ```

@@ -66,7 +66,7 @@ from davinci_core import (
 # ---------------------------------------------------------------------------
 # Constants
 # ---------------------------------------------------------------------------
-VERSION = "1.0.1"
+VERSION = "1.0.2"
 RELEASE_DATE = "October 2026"
 KOFI_URL = "https://ko-fi.com/ribeirolabs"
 

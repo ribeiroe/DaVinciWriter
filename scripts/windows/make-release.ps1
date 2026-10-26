@@ -4,7 +4,7 @@
 #
 # Usage:
 #   .\scripts\windows\make-release.ps1
-#   .\scripts\windows\make-release.ps1 -Version 1.0.1
+#   .\scripts\windows\make-release.ps1 -Version 1.0.2
 
 param(
     [string]$Version = ""
@@ -24,7 +24,7 @@ Write-Host ""
 
 # Get version
 if ([string]::IsNullOrEmpty($Version)) {
-    $Version = Read-Host "Version number (e.g. 1.0.1)"
+    $Version = Read-Host "Version number (e.g. 1.0.2)"
 }
 
 if ([string]::IsNullOrEmpty($Version)) {
