@@ -31,14 +31,13 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          name: DaVinci Writer v${{ steps.version.outputs.VERSION }}
+          name: v${{ steps.version.outputs.VERSION }}
           generate_release_notes: true
           body: |
-            ## DaVinci Writer v${{ steps.version.outputs.VERSION }}
-
             Download `DaVinci-v${{ steps.version.outputs.VERSION }}.zip`, unzip it, and launch with `start.bat` (Windows) or `Start DaVinci.command` (macOS). You can also run with Docker via `docker compose up`.
 
-            ### What's included
+            **What's included**
+
             - Full source code and Web UI (`web/`)
             - All agent and skill prompts (`.github/`)
             - Documentation (`docs/`, `README.md`, `AGENTS.md`)
@@ -46,10 +45,9 @@ jobs:
             - Setup scripts (`scripts/windows/`, `scripts/macos/`)
             - Dockerfile and docker-compose.yml
 
-            ### Requirements
+            **Requirements**
+
             - Python 3.10+ **or** Docker
             - Anthropic API key ([get one](https://console.anthropic.com/)) or a local model via Ollama / LM Studio
-
-            ### Changes since the last release
           files: ${{ env.ZIP }}
           fail_on_unmatched_files: true
