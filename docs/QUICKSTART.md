@@ -17,7 +17,7 @@ The easiest way. Everything is included in the release zip.
 - **An Anthropic API key** — [Get one here](https://console.anthropic.com/) (add a payment method to your Anthropic account; or skip the key and use a local model)
 
 **Steps:**
-1. Download and unzip **`DaVinci-v1.0.2.zip`**.
+1. Download and unzip **`DaVinci-v1.1.0.zip`**.
 2. Start the app:
    - macOS: double-click **`Start DaVinci.command`**
    - Windows: double-click **`start.bat`**

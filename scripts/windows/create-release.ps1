@@ -1,7 +1,7 @@
 # DaVinci Writer - Build Release Zip (PowerShell)
 # Creates a self-contained release folder and zips it
 
-param([string]$Version = "1.0.2")
+param([string]$Version = "1.1.0")
 
 $ErrorActionPreference = "Stop"
 $RepoRoot = Split-Path -Parent -Path (Split-Path -Parent -Path $PSScriptRoot)
