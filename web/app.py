@@ -483,6 +483,12 @@ h1, h2, h3,
     box-shadow: 0 1px 2px rgba(0,0,0,0.4), 0 4px 14px rgba(0,0,0,0.3);
     transform: translateY(-1px);
 }
+.stButton button[kind="primary"]:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
 /* Focus ring — accessibility */
 .stButton button:focus-visible {
     outline: 2px solid var(--primary) !important;
@@ -2057,7 +2063,7 @@ def _call_claude(system_prompt: str, user_message: str, progress_placeholder=Non
 
         # Accumulate session-wide usage and an estimated cost for the sidebar
         # (a local endpoint costs nothing)
-        p_in, p_out = (0.0, 0.0) if base_url else _MODEL_PRICES.get(model, (3.00, 15.00))
+        p_in, p_out = (0.0, 0.0) if base_url else _MODEL_PRICES.get(model, (2.00, 10.00))
         turn_cost = (
             usage_totals["input"] * p_in
             + usage_totals["cache_read"] * p_in * 0.1
@@ -2904,8 +2910,8 @@ elif st.session_state.page == "settings":
             "desc": "Best balance of quality, speed, and cost. Excellent for academic writing with strong reasoning.",
             "speed": "Fast",
             "quality": "High",
-            "cost_input": "$3.00",
-            "cost_output": "$15.00",
+            "cost_input": "$2.00",
+            "cost_output": "$10.00",
             "context": "1M tokens",
             "best_for": "Full paper generation, revisions, reviews — best value for most users.",
         },
@@ -3065,38 +3071,64 @@ elif st.session_state.page == "settings":
             # ---- Local endpoint pane ----
             st.caption(
                 "Run DaVinci cost-free against a local model through any server that speaks the "
-                "Anthropic Messages API — for example a LiteLLM proxy in front of Ollama. "
+                "Anthropic Messages API — Ollama, LM Studio, or a LiteLLM proxy. "
                 "No API key required."
             )
             if _local_active:
                 st.success(
                     f"Active: `{html.escape(_custom_base_url())}` · model `{html.escape(os.getenv('ANTHROPIC_MODEL', ''))}`"
                 )
-            with st.expander(":material/computer: How to set up Ollama + LiteLLM", expanded=not _local_active):
-                st.markdown("""
-1. Install [Ollama](https://ollama.com/) and pull a **tool-capable** model:
-   ```
-   ollama pull qwen2.5:14b
-   ```
-   (Also good: `llama3.1:8b` / `llama3.1:70b`, `mistral-nemo`. The model **must** support tool calling.)
-2. Start a [LiteLLM](https://docs.litellm.ai/) proxy that translates Anthropic ↔ Ollama:
-   ```
-   pip install "litellm[proxy]"
-   litellm --model ollama_chat/qwen2.5:14b --port 4000
-   ```
-3. Enter `http://localhost:4000` below, click **Test connection**, pick the model, and activate.
+            _SERVERS = {
+                "Ollama": "http://localhost:11434",
+                "LM Studio": "http://localhost:1234",
+                "LiteLLM proxy": "http://localhost:4000",
+                "Other": "",
+            }
+            if "custom_base_url_input" not in st.session_state:
+                st.session_state["custom_base_url_input"] = _custom_base_url() or _SERVERS["Ollama"]
 
-:material/warning: **Expectations:** local models are much weaker than Claude on this pipeline
-(tool-calling reliability, context length, writing quality). Best for imports,
-format conversion, and early drafts — switch back to the cloud for final papers.
+            def _on_server_change():
+                _url = _SERVERS[st.session_state["local_server_kind"]]
+                if _url:
+                    st.session_state["custom_base_url_input"] = _url
+                st.session_state.pop("_endpoint_models", None)
+
+            st.radio(
+                "Which program runs your model?",
+                list(_SERVERS),
+                horizontal=True,
+                key="local_server_kind",
+                on_change=_on_server_change,
+            )
+            with st.expander(":material/help: Step-by-step setup", expanded=not _local_active):
+                st.markdown("""
+**Ollama** (simplest)
+1. Install [Ollama](https://ollama.com/) and download a model, e.g. `ollama pull gemma4:31b` or `ollama pull qwen2.5:14b`.
+2. Keep Ollama running — that's it. Recent Ollama versions speak DaVinci's language directly.
+
+**LM Studio**
+1. Install [LM Studio](https://lmstudio.ai/), download and load a model.
+2. Open the **Developer** tab and click **Start Server**.
+
+**LiteLLM proxy** (only if your Ollama / LM Studio version is too old to connect directly)
+```
+pip install "litellm[proxy]"
+litellm --model ollama_chat/qwen2.5:14b --port 4000
+```
+
+**Then:** click **Connect & find models** below, pick your model from the list, and click **Use this endpoint**.
+
+:material/info: The model on another computer? Replace `localhost` with that computer's network address (e.g. `http://192.168.1.20:11434`).
+
+:material/warning: Pick a model that supports **tool calling** (Gemma 4, Qwen 2.5+, Llama 3.1+, Mistral Nemo…).
+Local models are weaker than Claude — great for imports, conversions and early drafts; switch to the cloud for final papers.
 """)
             _in_url = st.text_input(
-                "Endpoint base URL",
-                value=_custom_base_url(),
-                placeholder="http://localhost:4000",
+                "Server address",
+                placeholder="http://localhost:11434",
                 key="custom_base_url_input",
             )
-            if st.button(":material/search: Test connection", disabled=not _in_url.strip(), width="content"):
+            if st.button(":material/search: Connect & find models", disabled=not _in_url.strip(), width="content"):
                 _ok, _msg, _ids = _test_local_endpoint(_in_url.strip())
                 (st.success if _ok else st.error)(_msg)
 
@@ -3116,7 +3148,7 @@ format conversion, and early drafts — switch back to the cloud for final paper
                 _in_model = st.text_input(
                     "Model ID at this endpoint",
                     value=os.getenv("ANTHROPIC_MODEL", "") if _local_active else "",
-                    placeholder="ollama_chat/qwen2.5:14b",
+                    placeholder="e.g. gemma4:31b",
                     key="custom_model_id_input",
                 )
             else:
@@ -3202,8 +3234,52 @@ format conversion, and early drafts — switch back to the cloud for final paper
             _sel_info = _MODEL_INFO.get(current_model)
             if _sel_info:
                 st.caption(f":material/lightbulb: **Best for:** {_sel_info['best_for']}")
+
+            # Fetch the account's model list once per session so new releases show up automatically
+            if current_key and _cloud_models is None and not st.session_state.get("_cloud_models_tried"):
+                st.session_state["_cloud_models_tried"] = True
+                _test_anthropic_key(current_key)
+                _cloud_models = st.session_state.get("_cloud_models")
             if _cloud_models is None and current_key:
                 st.caption("Tip: *Save & Test* your key in the Connection tab to check per-model availability.")
+
+            _extra_models = [m for m in (_cloud_models or []) if m not in _MODEL_INFO]
+            _using_other = current_model not in _MODEL_INFO
+            with st.expander(
+                ":material/add_circle: Use another Claude model (e.g. a newly released one)",
+                expanded=_using_other,
+            ):
+                if _using_other:
+                    st.success(f"Currently using `{html.escape(current_model)}`")
+                _TYPE_OPT = "Type a model name…"
+                _other_opts = _extra_models + [_TYPE_OPT]
+                _other_pick = st.selectbox(
+                    "Models available on your Anthropic account",
+                    options=_other_opts,
+                    index=_other_opts.index(current_model) if current_model in _extra_models else 0,
+                    help="This list comes straight from Anthropic, so new models appear here as soon as they are released.",
+                )
+                if _other_pick == _TYPE_OPT:
+                    _other_model = st.text_input("Model name", placeholder="claude-...", key="cloud_custom_model")
+                else:
+                    _other_model = _other_pick
+                _oc1, _oc2 = st.columns(2)
+                with _oc1:
+                    if st.button(
+                        ":material/check: Use this model",
+                        type="primary",
+                        disabled=not (_other_model or "").strip() or _other_model == current_model,
+                        width="stretch",
+                    ):
+                        _set_env_vars({"ANTHROPIC_MODEL": _other_model.strip()})
+                        st.toast(f"Model changed to {_other_model.strip()}", icon=":material/check_circle:")
+                        st.rerun()
+                with _oc2:
+                    if st.button(":material/refresh: Refresh list", disabled=not current_key, width="stretch"):
+                        _ok, _msg = _test_anthropic_key(current_key)
+                        (st.toast if _ok else st.error)(_msg)
+                        st.rerun()
+                st.caption("Cost estimates for models without a built-in price use Sonnet 5 prices as an approximation.")
 
             st.markdown("---")
 
@@ -3249,15 +3325,15 @@ format conversion, and early drafts — switch back to the cloud for final paper
             _cost_tab_sonnet, _cost_tab_opus, _cost_tab_haiku = st.tabs([":material/paid: Sonnet 5", ":material/diamond: Opus 5", ":material/bolt: Haiku 4.5"])
 
             with _cost_tab_sonnet:
-                st.markdown("**$3.00 USD / 1M input** · **$15.00 USD / 1M output**")
+                st.markdown("**$2.00 USD / 1M input** · **$10.00 USD / 1M output**")
                 st.markdown("""
 | Task | Input Tokens | Output Tokens | Cost (USD) |
 |------|-------------|---------------|------------|
-| Ingest 1 source | ~5K–15K | ~2K–4K | ~$0.05–$0.08 |
-| Write full paper | ~30K–80K | ~15K–30K | ~$0.30–$0.70 |
-| Improve/revise | ~40K–100K | ~10K–25K | ~$0.25–$0.50 |
-| Peer review sim | ~20K–50K | ~5K–10K | ~$0.15–$0.25 |
-| Full pipeline | ~100K–200K | ~40K–60K | ~$1.00–$1.50 |
+| Ingest 1 source | ~5K–15K | ~2K–4K | ~$0.03–$0.07 |
+| Write full paper | ~30K–80K | ~15K–30K | ~$0.21–$0.46 |
+| Improve/revise | ~40K–100K | ~10K–25K | ~$0.18–$0.45 |
+| Peer review sim | ~20K–50K | ~5K–10K | ~$0.09–$0.20 |
+| Full pipeline | ~100K–200K | ~40K–60K | ~$0.60–$1.00 |
 """)
 
             with _cost_tab_opus:

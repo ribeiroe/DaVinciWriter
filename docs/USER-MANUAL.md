@@ -421,7 +421,7 @@ The Settings page is organized into three tabs:
 First choose **where DaVinci should run**:
 
 - **Anthropic Cloud** — the default. Best quality; requires an API key.
-- **Local endpoint** — cost-free generation through a local model server (Ollama behind a LiteLLM proxy, LM Studio, or any server that speaks the Anthropic Messages API).
+- **Local endpoint** — cost-free generation through a local model server (Ollama, LM Studio, a LiteLLM proxy, or any server that speaks the Anthropic Messages API).
 
 A **transparency note** under the choice reminds you that Anthropic Cloud receives your source text and drafts, while a local endpoint keeps everything on your machine.
 
@@ -435,10 +435,16 @@ A **transparency note** under the choice reminds you that Anthropic Cloud receiv
 
 **Local endpoint pane:**
 
-- A built-in **setup recipe** for Ollama + LiteLLM (expandable, step-by-step)
-- **Endpoint URL input** with **Test connection** — probes the server and fetches available models so you can choose from a dropdown
+![Local endpoint settings](images/settings-local-endpoint.png)
+![Local endpoint settings (Light Theme)](images/settings-local-endpoint-light.png)
+
+- **Which program runs your model?** — choose **Ollama**, **LM Studio**, **LiteLLM proxy**, or **Other**; the usual server address is filled in automatically (`http://localhost:11434`, `:1234`, `:4000`)
+- A built-in **step-by-step setup guide** for each option, including how to reach a model running on another computer on your network
+- **Server address** with **Connect & find models** — probes the server and lists the models installed there so you can pick one from a dropdown (or type its name)
 - **Use this endpoint** — activates local generation (no API key needed; session cost shows as free)
 - **Back to Anthropic cloud** — one click to switch back
+
+> **Tip:** Pick a model that supports **tool calling** (e.g. Gemma 4, Qwen 2.5+, Llama 3.1+, Mistral Nemo). If an older Ollama or LM Studio version will not connect directly, run a LiteLLM proxy in front of it and choose **LiteLLM proxy**.
 
 > **Privacy:** Your API key is stored only in the `.env` file on your machine. It is never sent to any server other than Anthropic's API.
 >
@@ -447,14 +453,17 @@ A **transparency note** under the choice reminds you that Anthropic Cloud receiv
 ### 🤖 Models Tab
 
 ![Models tab](images/settings-model-costs.png)
+![Models tab (Light Theme)](images/settings-model-costs-light.png)
 
 Pick your model from three side-by-side **comparison cards** — each shows the price per million tokens, speed, quality, and context window. Click a card to select it; the active card is highlighted. After a key test, each card also shows whether that model is available on your account.
 
 | Model | Best For | Speed | Cost (per 1M tokens) |
 |-------|----------|-------|------|
-| **Sonnet 5** (Recommended) | Full paper generation, revisions, reviews | Fast | \$3 in · \$15 out |
+| **Sonnet 5** (Recommended) | Full paper generation, revisions, reviews | Fast | \$2 in · \$10 out |
 | **Opus 5** (Premium) | Complex papers, novel argumentation, final polishing | Slower | \$5 in · \$25 out |
 | **Haiku 4.5** (Economy) | Paper import, format conversion, quality checks | Fastest | \$1 in · \$5 out |
+
+**Use another Claude model** — below the cards, this section lists every model available on your Anthropic account (fetched automatically, with a **Refresh list** button), so newly released models such as Sonnet 5.5, Opus 5.5, or Haiku 5.5 can be selected without any update. You can also type a model name. Cost estimates are built in for these newer models; any unknown model is estimated at Sonnet 5 prices.
 
 **Economy Model Routing** — routes lightweight goals (paper import, format conversion, quality check) to Haiku 4.5 while writing, revision, and review stay on your main model. This usually cuts cost without hurting paper quality.
 
@@ -665,7 +674,7 @@ Also review the automated reports before relying on them — `citation-verificat
 A: No. The Web UI is a point-and-click interface.
 
 **Q: What AI model does it use?**
-A: The Web UI uses Claude by Anthropic. Choose Sonnet 5 (recommended), Opus 5 (premium), or Haiku 4.5 (economy) in **⚙️ Settings → Models**, or point the app to a local model in **⚙️ Settings → Connection**. In VS Code, it uses the model configured in your GitHub Copilot subscription.
+A: The Web UI uses Claude by Anthropic. Choose Sonnet 5 (recommended), Opus 5 (premium), or Haiku 4.5 (economy) in **⚙️ Settings → Models** — or any other model on your account (e.g. newer releases) under **Use another Claude model** — or point the app to a local model in **⚙️ Settings → Connection**. In VS Code, it uses the model configured in your GitHub Copilot subscription.
 
 **Q: Is my data sent to the cloud?**
 A: When using the Web UI with the Anthropic cloud, your source text is sent to Anthropic's API for processing. Your original files and API key remain on your computer. With a local endpoint, nothing leaves your machine. See **⚙️ Settings → Connection** for details.
@@ -674,7 +683,7 @@ A: When using the Web UI with the Anthropic cloud, your source text is sent to A
 A: Open **⚙️ Settings → Connection**, paste your key, and click **Save & Test**. Alternatively, set `ANTHROPIC_API_KEY` in a `.env` file in the DaVinci folder.
 
 **Q: Can I use it offline?**
-A: Yes, with a local model. Choose **Local endpoint** in **⚙️ Settings → Connection** and follow the built-in Ollama + LiteLLM recipe. Generation then runs on your machine at no cost. Expect lower quality than cloud models; Anthropic cloud requires an internet connection.
+A: Yes, with a local model. Choose **Local endpoint** in **⚙️ Settings → Connection** and follow the built-in setup guide (Ollama, LM Studio, or LiteLLM). Generation then runs on your machine at no cost. Expect lower quality than cloud models; Anthropic cloud requires an internet connection.
 
 **Q: How can I support the project?**
 A: In the sidebar **Help** section, click **Support (Optional)**. You can also use the support card on the **About DaVinci** page, or the one-time hint shown when a pipeline completes. Tips are voluntary and help cover development, maintenance, and hosting costs.
@@ -721,7 +730,7 @@ A: Yes. Share the workspace folder. Co-authors can add their feedback using the 
 | Problem | Solution |
 |---------|----------|
 | "API key not configured" | Open **⚙️ Settings → Connection**, paste your key, and click **Save & Test**. Or create a `.env` file in the DaVinci root with `ANTHROPIC_API_KEY=sk-ant-...` |
-| Local endpoint not responding | Click **Test connection** in **⚙️ Settings → Connection** — make sure your LiteLLM proxy (or LM Studio server) is running and the URL includes the port, e.g. `http://localhost:4000` |
+| Local endpoint not responding | Click **Connect & find models** in **⚙️ Settings → Connection** — make sure Ollama / LM Studio (or your LiteLLM proxy) is running and the address includes the port, e.g. `http://localhost:11434` (Ollama), `:1234` (LM Studio), `:4000` (LiteLLM) |
 | Page won't load | Make sure Streamlit is running: `streamlit run web/app.py`, use `Start DaVinci.command` (macOS), use `start.bat` (Windows), or run the OS-specific scripts in `scripts/macos/` or `scripts/windows/` |
 | Upload fails | Check that the `sources/` folders exist and are writable |
 | "Module not found" error | Run `pip3 install -r web/requirements.txt` |

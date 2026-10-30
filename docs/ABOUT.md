@@ -23,8 +23,8 @@ DaVinci Writer automates the mechanical parts of paper writing so you can focus 
 - **Sources Manager** — browse, preview, upload, and delete workspace source files in the browser
 - **Papers Editor** — view and edit any generated paper section directly in the browser
 - **Output Manager** — browse, preview, and download all generated manuscripts and reports
-- **Model choice & cost control** — pick Sonnet 5, Opus 5, or Haiku 4.5 from comparison cards; optional Economy routing sends lightweight tasks to the cheapest model; live per-session cost tracking; automatic prompt caching cuts input costs by 70–90%
-- **Local model support** — run cost-free against Ollama (via a LiteLLM proxy), LM Studio, or any Anthropic-compatible endpoint, configured entirely from Settings
+- **Model choice & cost control** — pick Sonnet 5, Opus 5, or Haiku 4.5 from comparison cards, or any newer model on your Anthropic account; optional Economy routing sends lightweight tasks to the cheapest model; live per-session cost tracking; automatic prompt caching cuts input costs by 70–90%
+- **Local model support** — run cost-free against Ollama, LM Studio, a LiteLLM proxy, or any Anthropic-compatible endpoint, configured entirely from Settings with guided presets
 - **Themes** — System, Dark, or Light appearance, switchable from Settings or the top-bar toggle
 - **Responsible AI page** — EU AI Act notice and cloud-vs-local data-flow details, one click from the sidebar
 - **Community-supported sustainability** — optional Ko-fi tips are available from the sidebar, the About page, and after a pipeline completes to help cover development, maintenance, and hosting costs (no paywalls or feature gating)

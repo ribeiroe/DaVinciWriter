@@ -186,7 +186,7 @@ Open http://localhost:8501. Stop with `docker compose down`.
 - **📝 Papers Editor** — Open any generated paper, select a section from the list, edit it in a full-height text area, and save directly to disk.
 - **📂 Sources Manager** — Browse, preview, upload, and delete files in your `sources/` folders, and view ingested knowledge summaries.
 - **📄 Output Manager** — Browse, preview, and download all generated manuscripts and reports.
-- **⚙️ Settings** — Choose your provider (Anthropic cloud or a local endpoint), configure and verify your API key with Save & Test, pick a Claude model (Sonnet 5 / Opus 5 / Haiku 4.5) from comparison cards, enable Economy routing, track session costs, and switch between System, Dark, and Light themes.
+- **⚙️ Settings** — Choose your provider (Anthropic cloud or a local endpoint), configure and verify your API key with Save & Test, pick a Claude model (Sonnet 5 / Opus 5 / Haiku 4.5) from comparison cards or any other model on your account (e.g. newly released ones), enable Economy routing, track session costs, and switch between System, Dark, and Light themes.
 - **🛡️ Responsible AI** — A sidebar page with the EU AI Act notice and data-flow details (cloud vs. local).
 - **🤝 Optional Support** — A subtle Support entry in the Help section, an About-page support card, and a one-time hint after a pipeline completes link to Ko-fi for voluntary tips (no paywalls, no feature gating).
 - **💾 Session Persistence** — Sessions auto-save after each message; resume any of your five most recent sessions from the sidebar after closing the browser.
@@ -205,24 +205,27 @@ Open http://localhost:8501. Stop with `docker compose down`.
 
 See the **[User Manual](docs/USER-MANUAL.md)** for a screen-by-screen walkthrough.
 
-#### Using a local model (Ollama) — cost-free option
+#### Using a local model (Ollama / LM Studio) — cost-free option
 
 The Web UI can run against a **local model** instead of Anthropic cloud, using any
-server that supports the Anthropic Messages API. The tested recipe uses
-[LiteLLM](https://docs.litellm.ai/) in front of [Ollama](https://ollama.com/):
+server that supports the Anthropic Messages API. Pick a **tool-capable** model
+(e.g. Gemma 4, Qwen 2.5+, Llama 3.1+) — the pipeline is tool-driven.
+
+1. **Ollama** — install [Ollama](https://ollama.com/) and pull a model (`ollama pull qwen2.5:14b`), or
+   **LM Studio** — load a model and click **Start Server** in the Developer tab.
+2. Open **⚙️ Settings → Connection**, choose **Local endpoint**, select which program runs
+   your model (the server address is filled in for you), click **Connect & find models**,
+   pick your model from the list, and click **Use this endpoint**.
+
+If your Ollama / LM Studio version is too old to connect directly, put a
+[LiteLLM](https://docs.litellm.ai/) proxy in front of it and choose **LiteLLM proxy**:
 
 ```bash
-# 1. Pull a tool-capable model (required — the pipeline is tool-driven)
-ollama pull qwen2.5:14b
-
-# 2. Start the translation proxy
 pip install "litellm[proxy]"
 litellm --model ollama_chat/qwen2.5:14b --port 4000
 ```
 
-Then open **⚙️ Settings → Connection**, choose **Local endpoint**, enter
-`http://localhost:4000`, click **Test connection** to fetch the model list, then click
-**Use this endpoint**. No API key is needed while a local endpoint is active,
+No API key is needed while a local endpoint is active,
 and session cost is shown as free. Equivalent `.env` configuration:
 `ANTHROPIC_BASE_URL` + `ANTHROPIC_MODEL` (see `.env.example`).
 

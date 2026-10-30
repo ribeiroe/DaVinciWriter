@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+### Changes
+
+- Settings → Models: new **Use another Claude model** section lists every model on your Anthropic account, so new releases can be selected without an app update.
+- Settings → Connection: local endpoint presets for Ollama, LM Studio, and LiteLLM with auto-filled addresses and a plain-language setup guide.
+- Updated Sonnet 5 pricing to \$2 / \$10 per 1M tokens and added cost estimates for Sonnet 5.5, Opus 5.5, Haiku 5.5, and Fable 5.1.
+- Disabled primary buttons are now visibly greyed out.
+
 ## v1.0.2 — 2026-10-26
 
 ### Changes

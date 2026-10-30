@@ -22,9 +22,14 @@ VENUES_DIR = SOURCES_DIR / "venues"
 _DEFAULT_MODEL = "claude-sonnet-5"
 # USD per 1M tokens (input, output) — used for the session cost estimate
 _MODEL_PRICES = {
-    "claude-sonnet-5": (3.00, 15.00),
+    "claude-sonnet-5": (2.00, 10.00),
     "claude-opus-5": (5.00, 25.00),
     "claude-haiku-4-5": (1.00, 5.00),
+    "claude-sonnet-5-5": (2.00, 10.00),
+    "claude-opus-5-5": (4.00, 20.00),
+    # Prompts over 100K tokens cost $0.50 / $2.50 on Haiku 5.5
+    "claude-haiku-5-5": (0.10, 0.50),
+    "claude-fable-5-1": (10.00, 50.00),
 }
 # Lightweight goals routed to ANTHROPIC_MODEL_FAST when configured in Settings
 _FAST_MODEL_GOALS = {"import", "convert", "quality"}
