@@ -2,7 +2,7 @@ $TestDir = 'C:\Test-Release-Contents'
 if (Test-Path $TestDir) { Remove-Item $TestDir -Recurse -Force }
 
 Write-Host "Extracting release..."
-Expand-Archive -Path DaVinci-v1.1.0.zip -DestinationPath $TestDir -ErrorAction Stop
+Expand-Archive -Path DaVinci-v1.1.1.zip -DestinationPath $TestDir -ErrorAction Stop
 
 Write-Host ""
 Write-Host "Top-level extracted folders:"

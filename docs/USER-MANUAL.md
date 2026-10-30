@@ -1,6 +1,6 @@
 # DaVinci Writer — User Manual
 
-> **Version:** 1.1.0 · **Last Updated:** October 2026
+> **Version:** 1.1.1 · **Last Updated:** October 2026
 >
 > A practical guide for turning theses, notes, and data into publication-ready scientific papers — no programming required.
 
@@ -68,7 +68,7 @@ Both methods share the same workspace — files and outputs are compatible betwe
 
 ### Installation (Release Package)
 
-1. **Unzip** the `DaVinci-v1.1.0.zip` release to a folder on your computer.
+1. **Unzip** the `DaVinci-v1.1.1.zip` release to a folder on your computer.
 
 2. Start the app:
    - macOS: **Double-click `Start DaVinci.command`**
@@ -769,7 +769,7 @@ If DaVinci Writer helped produce a paper, thesis, or report, please cite it as:
   author  = {Ferreira Ribeiro, J. Eduardo and Campos, António and Pessoa Soares, Nuno},
   title   = {DaVinci Writer: An AI-Powered Multi-Agent System for Academic Paper Writing},
   year    = {2026},
-  version = {1.1.0},
+  version = {1.1.1},
   url     = {https://github.com/ribeiroe/DaVinci_Writer}
 }
 ```

@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.1.1 — 2026-10-30
+
+### Fixes
+
+- macOS launcher (`Start DaVinci.command`): Streamlit no longer blocks on a first-run "Email:" prompt before the server binds to port 8501, which previously caused the browser to show "connection refused". Added `--server.headless true --browser.gatherUsageStats false`, matching the Windows launcher.
+
 ## v1.1.0 — 2026-10-30
 
 ### Changes

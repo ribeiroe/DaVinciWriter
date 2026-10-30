@@ -7,7 +7,7 @@
 <h3 align="center">A multi-agent AI assistant for researchers — from sources to a submission-ready manuscript</h3>
 
 <p align="center">
-  v1.1.0 · Python 3.10+ · Streamlit · Docker ready · GPL v3.0
+  v1.1.1 · Python 3.10+ · Streamlit · Docker ready · GPL v3.0
 </p>
 
 ---
@@ -117,7 +117,7 @@ See [QUICKSTART.md](docs/QUICKSTART.md) for a visual 3-step guide, or read the *
 Use the browser-based interface if you prefer not to use VS Code.
 
 **Quickest method (release package):**
-1. Unzip `DaVinci-v1.1.0.zip` to a folder.
+1. Unzip `DaVinci-v1.1.1.zip` to a folder.
 2. Start the app:
    - macOS: double-click **`Start DaVinci.command`**
    - Windows: double-click **`start.bat`**
@@ -550,7 +550,7 @@ If DaVinci Writer helped produce a paper, thesis, or report, please cite it as:
   author  = {Ferreira Ribeiro, J. Eduardo and Campos, António and Pessoa Soares, Nuno},
   title   = {DaVinci Writer: An AI-Powered Multi-Agent System for Academic Paper Writing},
   year    = {2026},
-  version = {1.1.0},
+  version = {1.1.1},
   url     = {https://github.com/ribeiroe/DaVinci_Writer}
 }
 ```

@@ -93,5 +93,5 @@ if command -v open >/dev/null 2>&1; then
     ( sleep 3; open "http://localhost:8501" ) &
 fi
 
-# Start streamlit
-exec streamlit run web/app.py
+# Start streamlit (headless + no usage-stats prompt so it doesn't block waiting for input)
+exec streamlit run web/app.py --server.headless true --browser.gatherUsageStats false
